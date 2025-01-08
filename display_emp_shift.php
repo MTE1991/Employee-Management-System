@@ -67,7 +67,6 @@ if (isset($_GET['employee_id'])) {
     // Close the connection
     $conn->close();
 
-    echo "<br><a href='index.php'>Back to Home</a></body></html>";
 } else {
     echo "Please provide a valid employee ID.";
 }

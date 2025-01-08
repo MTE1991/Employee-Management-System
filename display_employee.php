@@ -50,4 +50,5 @@ if ($employee_result->num_rows > 0) {
 $conn->close();
 ?>
 
-<br><a href="index.php" class="button">Back to Home</a>
+<br>
+<a href="index.php" class="button">Back to Home</a>
