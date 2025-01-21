@@ -29,10 +29,12 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             <li><a href="display_dept.php">View Departments</a></li>
             <li><a href="display_payroll.php">View Salary Data</a></li>
             <li><a href="add_employee.php">Add New Employee</a></li>
-            <li><a href="assign_payroll.php">Assign Payroll</a></li>
-            <li><a href="attendance_summary.php">Attendance Summary</a></li>
             <li><a href="attendance.php">Attendance Page</a></li>
             <li><a href="logout.php">Logout</a></li>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <li><a href="assign_payroll.php">Assign Payroll</a></li>
+                <li><a href="attendance_summary.php">Attendance Summary</a></li>
+            <?php endif; ?>
         </ul>
 
         <!-- Form to select employee and view their shift data -->

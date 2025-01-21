@@ -12,9 +12,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Validate username and password
-    if ($username === 'admin' && $password === '2002') {
+    // Hardcoded user data with roles (for testing purposes only)
+    $users = [
+        'admin' => ['password' => '2002', 'role' => 'admin'],
+        'mte2002' => ['password' => 'kobayashi1995', 'role' => 'user'],
+    ];
+
+    // Check if the username exists and password is correct
+    if (isset($users[$username]) && $users[$username]['password'] === $password) {
         $_SESSION['logged_in'] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['role'] = $users[$username]['role'];  // Assign the role
         header('Location: index.php');
         exit;
     } else {
@@ -42,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
             </div>
+            <br>
             <div>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>

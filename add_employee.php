@@ -3,6 +3,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
+
+// Restrict access for non-admin users
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SESSION['role'] !== 'admin') {
+    header('Location: index.php'); // Redirect to homepage or another page
+    exit;
+}
+
 $servername = "localhost";
 $username = "admin"; // Replace with your username
 $password = "2002"; // Replace with your password
