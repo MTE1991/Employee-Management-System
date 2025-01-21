@@ -1,7 +1,7 @@
 <?php
 // Database connection
 $servername = "localhost";
-$username = "mtekleel";
+$username = "admin";
 $password = "2002";
 $database = "empDB";
 

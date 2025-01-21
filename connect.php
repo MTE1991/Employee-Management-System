@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $servername = "localhost";
-$username = "mtekleel";
+$username = "admin";
 $password = "2002";
 $database = "empDB";
 

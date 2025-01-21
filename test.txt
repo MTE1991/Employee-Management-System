@@ -1,0 +1,3 @@
+RENAME USER 'mtekleel'@'localhost' TO 'admin'@'localhost';
+
+sudo mysqldump -u root -p empDB > empDB_latest.sql

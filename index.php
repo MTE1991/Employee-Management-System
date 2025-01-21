@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +25,14 @@
         <ul class="navbar">
             <li><a href="display_managers.php">View Managers by Department</a></li>
             <li><a href="display_employee.php">View Employee Data</a></li>
-            <li><a href="display_shift.php">View Shift Data</a></li>
+            <li><a href="display_shift.php">View Available Shifts</a></li>
             <li><a href="display_dept.php">View Departments</a></li>
             <li><a href="display_payroll.php">View Salary Data</a></li>
             <li><a href="add_employee.php">Add New Employee</a></li>
             <li><a href="assign_payroll.php">Assign Payroll</a></li>
             <li><a href="attendance_summary.php">Attendance Summary</a></li>
+            <li><a href="attendance.php">Attendance Page</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
 
         <!-- Form to select employee and view their shift data -->
