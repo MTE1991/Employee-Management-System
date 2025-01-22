@@ -40,23 +40,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <h1>Employee Management System: Login</h1>
-        <?php if (!empty($error)): ?>
-            <p class="error"><?php echo $error; ?></p>
-        <?php endif; ?>
-        <form action="login.php" method="POST">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <br>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="button">Login</button>
-        </form>
-    </div>
+    <h1>Employee Management System: Login</h1>
+    <?php if (!empty($error)): ?>
+        <p class="error"><?php echo $error; ?></p>
+    <?php endif; ?>
+    <form action="login.php" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="button">Login</button>
+    </form>
 </body>
 </html>

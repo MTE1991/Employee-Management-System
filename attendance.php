@@ -2,6 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Set PHP timezone
+date_default_timezone_set('Asia/Dhaka');
+
 // Connect to the database
 $mysqli = new mysqli("localhost", "admin", "2002", "empDB");
 
@@ -9,6 +12,9 @@ $mysqli = new mysqli("localhost", "admin", "2002", "empDB");
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
+
+// Set MySQL timezone
+$mysqli->query("SET time_zone = '+06:00'");
 
 // Initialize variables
 $message = "";
@@ -65,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $message = "Employee not found. Please check the name.";
     }
-
     $stmt->close();
 }
 $mysqli->close();

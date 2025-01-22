@@ -26,7 +26,7 @@ $query = "
         A.WorkingHours
     FROM Attendance A
     JOIN Employee E ON A.EmployeeID = E.EmployeeID
-    ORDER BY A.Datetime DESC
+    ORDER BY A.CheckInTime DESC
 ";
 
 $result = $conn->query($query);

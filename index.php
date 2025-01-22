@@ -28,12 +28,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             <li><a href="display_shift.php">View Available Shifts</a></li>
             <li><a href="display_dept.php">View Departments</a></li>
             <li><a href="display_payroll.php">View Salary Data</a></li>
-            <li><a href="add_employee.php">Add New Employee</a></li>
             <li><a href="attendance.php">Attendance Page</a></li>
             <li><a href="logout.php">Logout</a></li>
+            <li><a href="attendance_summary.php">Attendance Summary</a></li>
+            <li><a href="leave_requests.php">Leave Requests & Leave Status</a></li>
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                 <li><a href="assign_payroll.php">Assign Payroll</a></li>
-                <li><a href="attendance_summary.php">Attendance Summary</a></li>
+                <li><a href="add_employee.php">Add New Employee</a></li>
+                <li><a href="leave_approval.php">Leave Approval</a></li>
             <?php endif; ?>
         </ul>
 
