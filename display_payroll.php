@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $employeeID = $_POST['employeeID'];
     $sql = "SELECT e.FirstName, e.LastName, e.Position,
-                 p.SalaryMonth, p.BasicSalary, p.Bonus, 
+                 p.BasicSalary, p.Bonus, 
                  p.Deductions, p.NetSalary, p.PaymentDate
             FROM Payroll p
             JOIN Employee e ON p.EmployeeID = e.EmployeeID
@@ -55,7 +55,6 @@ if (isset($salaryData)) {
                 <tr><th>First Name</th><td>" . $salaryData['FirstName'] . "</td></tr>
                 <tr><th>Last Name</th><td>" . $salaryData['LastName'] . "</td></tr>
                 <tr><th>Position</th><td>" . $salaryData['Position'] . "</td></tr>
-                <tr><th>Salary Month</th><td>" . $salaryData['SalaryMonth'] . "</td></tr>
                 <tr><th>Basic Salary</th><td>" . $salaryData['BasicSalary'] . "</td></tr>
                 <tr><th>Bonus</th><td>" . $salaryData['Bonus'] . "</td></tr>
                 <tr><th>Deductions</th><td>" . $salaryData['Deductions'] . "</td></tr>

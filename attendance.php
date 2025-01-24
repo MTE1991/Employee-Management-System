@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Set PHP timezone
+// Set timezone to Dhaka
 date_default_timezone_set('Asia/Dhaka');
 
 // Connect to the database
@@ -12,9 +12,6 @@ $mysqli = new mysqli("localhost", "admin", "2002", "empDB");
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
-
-// Set MySQL timezone
-$mysqli->query("SET time_zone = '+06:00'");
 
 // Initialize variables
 $message = "";
@@ -44,15 +41,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $shiftID = $row['ShiftID'];
 
         if ($action === 'check_in') {
-            // Insert a new attendance record
-            $insertQuery = "INSERT INTO Attendance (EmployeeID, ShiftID, Datetime, CheckInTime, Status, WorkingHours) 
-                            VALUES (?, ?, ?, ?, 'Present', 0)";
-            $stmt = $mysqli->prepare($insertQuery);
-            $stmt->bind_param("iiss", $employeeID, $shiftID, $currentDate, $currentTime);
-            if ($stmt->execute()) {
-                $message = "Check-in successful for $employeeName at $currentTime.";
+            // Check if an attendance record already exists
+            $checkQuery = "SELECT * FROM Attendance WHERE EmployeeID = ? AND Datetime = ?";
+            $stmt = $mysqli->prepare($checkQuery);
+            $stmt->bind_param("is", $employeeID, $currentDate);
+            $stmt->execute();
+            $checkResult = $stmt->get_result();
+
+            if ($checkResult->num_rows > 0) {
+                // Record exists
+                $message = "You have already checked in today.";
             } else {
-                $message = "Error: " . $mysqli->error;
+                // Insert a new attendance record
+                $insertQuery = "INSERT INTO Attendance (EmployeeID, ShiftID, Datetime, CheckInTime, Status, WorkingHours) 
+                                VALUES (?, ?, ?, ?, 'Present', 0)";
+                $stmt = $mysqli->prepare($insertQuery);
+                $stmt->bind_param("iiss", $employeeID, $shiftID, $currentDate, $currentTime);
+                if ($stmt->execute()) {
+                    $message = "Check-in successful for $employeeName at $currentTime.";
+                } else {
+                    $message = "Error: " . $mysqli->error;
+                }
             }
         } elseif ($action === 'check_out') {
             // Update the existing attendance record with CheckOutTime and calculate WorkingHours

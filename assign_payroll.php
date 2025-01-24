@@ -29,7 +29,7 @@ $message = "";
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $employeeID = intval($_POST['employeeID']);
-    $salaryMonth = $conn->real_escape_string($_POST['salaryMonth']) . "-01"; // Append '-01' for the first day of the month
+    $salaryMonth = $conn->real_escape_string($_POST['monthlySalary']);
     $bonus = floatval($_POST['bonus']);
     $deductions = floatval($_POST['deductions']);
     $paymentDate = $conn->real_escape_string($_POST['paymentDate']);
@@ -37,7 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Fetch the basic salary from the Employee table
     $result = $conn->query("SELECT Salary FROM Employee WHERE EmployeeID = $employeeID");
     if ($result && $row = $result->fetch_assoc()) {
-        $basicSalary = floatval($row['Salary']);
+        $expectedSalary = floatval($row['Salary']);
+        $basicSalary = floatval($_POST['basicSalary']);
+
+        // Validate that the Basic Salary matches the stored Salary
+        if ($basicSalary !== $expectedSalary) {
+            die("Error: Basic Salary does not match the employee's monthly salary.");
+        }
+
         $netSalary = $basicSalary + $bonus - $deductions;
 
         // Insert data into the Payroll table
@@ -75,8 +82,10 @@ if (!$employee_result) {
         function updateSalary() {
             const employeeSelect = document.getElementById('employeeID');
             const basicSalaryInput = document.getElementById('basicSalary');
+            const monthlySalaryInput = document.getElementById("monthlySalary");
             const salaryData = JSON.parse(employeeSelect.options[employeeSelect.selectedIndex].dataset.salary);
             basicSalaryInput.value = salaryData;
+            monthlySalaryInput.value = salaryData;
         }
     </script>
 </head>
@@ -96,10 +105,10 @@ if (!$employee_result) {
         </select><br>
 
         <label for="basicSalary">Basic Salary:</label>
-        <input type="number" id="basicSalary" name="basicSalary" step="0.01" readonly required><br>
-        
-        <label for="salaryMonth">Salary Month:</label>
-        <input type="month" id="salaryMonth" name="salaryMonth" required><br>
+        <input type="number" id="basicSalary" name="basicSalary" required><br>
+
+        <label for="monthlySalary">Monthly Salary:</label>
+        <input type="number" id="monthlySalary" name="monthlySalary" readonly required><br>
         
         <label for="bonus">Bonus:</label>
         <input type="number" step="0.01" id="bonus" name="bonus"><br>

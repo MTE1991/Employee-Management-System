@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $users = [
         'admin' => ['password' => '2002', 'role' => 'admin'],
         'mte2002' => ['password' => 'kobayashi1995', 'role' => 'user'],
+        'faizah' => ['password' => 'faizahMehnaz2001', 'role' => 'user']
     ];
 
     // Check if the username exists and password is correct
