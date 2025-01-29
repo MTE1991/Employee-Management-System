@@ -109,6 +109,7 @@ $mysqli->close();
                 <button type="submit" name="action" value="check_out" class="button">Check Out</button>
             </div>
         </form>
+        <br><a href='index.php' class='button'>Back to Home</a></div></body></html>
     </div>
 </body>
 </html>

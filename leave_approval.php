@@ -100,6 +100,7 @@ $result = $mysqli->query($query);
         <?php else: ?>
             <p>No pending leave requests.</p>
         <?php endif; ?>
+        <a href="index.php">Go Home</a>
     </div>
 </body>
 </html>

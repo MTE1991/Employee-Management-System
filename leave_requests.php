@@ -164,6 +164,7 @@ $mysqli->close();
         <?php elseif (isset($_GET['employee_name'])): ?>
             <p>No leave applications found for the given employee.</p>
         <?php endif; ?>
+        <br><a href='index.php' class='button'>Back to Home</a></div></body></html>
     </div>
 </body>
 </html>

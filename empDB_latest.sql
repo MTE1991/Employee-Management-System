@@ -174,7 +174,7 @@ DROP TABLE IF EXISTS `Payroll`;
 CREATE TABLE `Payroll` (
   `PayrollID` int(11) NOT NULL AUTO_INCREMENT,
   `EmployeeID` int(11) DEFAULT NULL,
-  `SalaryMonth` date DEFAULT NULL,
+  `SalaryMonth` int(11) DEFAULT NULL, -- Monthly Salary
   `BasicSalary` decimal(10,2) DEFAULT NULL,
   `Bonus` decimal(10,2) DEFAULT NULL,
   `Deductions` decimal(10,2) DEFAULT NULL,

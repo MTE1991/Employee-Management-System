@@ -76,6 +76,7 @@ if (!$result) {
             <?php endwhile; ?>
         </tbody>
     </table>
+    <br><a href='index.php' class='button'>Back to Home</a></div></body>
 </body>
 </html>
 
