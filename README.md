@@ -1,6 +1,6 @@
 # Employee Management System
 
-A web-based application designed to streamline and manage employee-related operations within an organization. This system facilitates tasks such as employee data management, attendance tracking, leave approvals, payroll assignments, and departmental organization.
+A web-based application designed to streamline and manage employee-related operations within a small-scale organization. This system facilitates tasks such as employee data management, attendance tracking, leave approvals, payroll assignments, and departmental organization.
 
 ## Features
 
